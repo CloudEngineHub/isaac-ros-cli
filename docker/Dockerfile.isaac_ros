@@ -38,7 +38,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 
 # Isaac ROS apt repository configuration
 ARG ISAAC_DEBIAN_KEY_URL="https://isaac.download.nvidia.com/isaac-ros/repos.key"
-ARG ISAAC_DEBIAN_REPOSITORY="https://isaac.download.nvidia.com/isaac-ros/release-4.5"
+ARG ISAAC_DEBIAN_REPOSITORY="https://isaac.download.nvidia.com/isaac-ros/release-4"
 ARG ISAAC_DEBIAN_DIST=""
 ARG ISAAC_DEBIAN_COMPONENTS="main"
 ARG ISAAC_DEBIAN_DISTRO_SUFFIX=""
@@ -79,9 +79,9 @@ ENV PATH="/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/src/tensorrt/bin:${PATH
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-key adv --fetch-key https://repo.download.nvidia.com/jetson/jetson-ota-public.asc && \
     if [[ ${PLATFORM} == 'arm64' ]]; then \
-        echo 'deb http://repo.download.nvidia.com/jetson/common r38.4 main' > /etc/apt/sources.list.d/nvidia-jetson-apt-source.list; \
+        echo 'deb http://repo.download.nvidia.com/jetson/common r39.2 main' > /etc/apt/sources.list.d/nvidia-jetson-apt-source.list; \
     elif [[ ${PLATFORM} == 'amd64' ]]; then \
-        echo 'deb http://repo.download.nvidia.com/jetson/x86_64/noble r38.4 main' > /etc/apt/sources.list.d/nvidia-jetson-apt-source.list; \
+        echo 'deb http://repo.download.nvidia.com/jetson/x86_64/noble r39.2 main' > /etc/apt/sources.list.d/nvidia-jetson-apt-source.list; \
     else \
         echo "Unrecognized platform: ${PLATFORM}" && exit 1 ; \
     fi && \
