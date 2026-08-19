@@ -81,6 +81,18 @@ class TestParseArgsMode(unittest.TestCase):
         args = self._parse()
         self.assertEqual(args.mode, 'run')
 
+    def test_default_push_is_false(self):
+        args = self._parse()
+        self.assertFalse(args.push)
+
+    def test_push_flag_sets_push_true(self):
+        args = self._parse(['--push'])
+        self.assertTrue(args.push)
+
+    def test_no_push_flag_sets_push_false(self):
+        args = self._parse(['--no-push'])
+        self.assertFalse(args.push)
+
     def test_mode_build(self):
         args = self._parse(['--mode', 'build'])
         self.assertEqual(args.mode, 'build')

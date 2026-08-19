@@ -439,12 +439,19 @@ def parse_args():
         default=False,
         help="Build the image locally if it doesn't exist"
     )
-    parser.add_argument(
+    push_group = parser.add_mutually_exclusive_group()
+    push_group.add_argument(
         "--push",
         action="store_true",
-        required=False,
+        dest="push",
         default=False,
         help="Push the image to the target registry when complete"
+    )
+    push_group.add_argument(
+        "--no-push",
+        action="store_false",
+        dest="push",
+        help="Do not push the image to the target registry when complete"
     )
     parser.add_argument(
         "--container-name",
